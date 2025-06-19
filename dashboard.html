@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini CRM — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: #faf8f3;
+      color: #3c2f2f;
+    }
+
+    header {
+      background: #4e342e;
+      padding: 20px 40px;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+    }
+
+    nav {
+      background: #4e342e;
+      padding: 10px 40px;
+    }
+
+    nav a {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      padding: 30px;
+      text-align: center;
+    }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      margin-bottom: 10px;
+      color: #4e342e;
+    }
+
+    .card p {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      color: #5c4a3a;
+    }
+
+    footer {
+      text-align: center;
+      margin: 60px 0 20px 0;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Dashboard</h1>
+  </header>
+
+  <nav>
+   <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="clients.html">Clients</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="tasks.html">Tasks</a>
+    <a href="documentation.html">Documentation</a>
+  </nav>
+
+  <div class="container">
+    <div class="grid" id="dashboard-cards">
+      <!-- Dynamic cards will be injected here -->
+    </div>
+  </div>
+
+  <script>
+   const STORAGE_KEY = "miniCRMClients";
+
+function loadClients() {
+  const data = localStorage.getItem(STORAGE_KEY);
+  if (data) return JSON.parse(data);
+  return [];
+}
+
+const clients = loadClients();
+
+
+    function renderDashboard() {
+      const dashboard = document.getElementById("dashboard-cards");
+      dashboard.innerHTML = "";
+
+      const total = clients.length;
+      const leads = clients.filter(c => c.status.toLowerCase() === "lead").length;
+      const prospects = clients.filter(c => c.status.toLowerCase() === "prospect").length;
+      const actives = clients.filter(c => c.status.toLowerCase() === "active").length;
+      const inactives = clients.filter(c => c.status.toLowerCase() === "inactive").length;
+
+      const high = clients.filter(c => c.priority?.toLowerCase() === "high").length;
+      const medium = clients.filter(c => c.priority?.toLowerCase() === "medium").length;
+      const low = clients.filter(c => c.priority?.toLowerCase() === "low").length;
+
+      const allTags = clients.flatMap(c => c.tags).filter(Boolean);
+      const uniqueTags = [...new Set(allTags)];
+
+      const stats = [
+        { title: "Total Clients", value: total },
+        { title: "Leads", value: leads },
+        { title: "Prospects", value: prospects },
+        { title: "Active", value: actives },
+        { title: "Inactive", value: inactives },
+        { title: "High Priority", value: high },
+        { title: "Medium Priority", value: medium },
+        { title: "Low Priority", value: low },
+        { title: "Unique Tags", value: uniqueTags.length },
+      ];
+
+      stats.forEach(stat => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<h2>${stat.title}</h2><p>${stat.value}</p>`;
+        dashboard.appendChild(card);
+      });
+    }
+
+    renderDashboard();
+  </script>
+
+<footer>
+    Mini CRM Project &copy; 2025 — Portfolio Build Demo - Powered by  Chemene & AI-enhanced design strategy.
+  </footer>
+
+</body>
+</html>

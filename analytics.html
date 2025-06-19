@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analytics - Mini CRM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { margin:0; font-family:'Inter',sans-serif; background:#faf8f3; color:#3c2f2f; }
+    header { background:#4e342e; padding:20px 40px; color:white; }
+    header h1 { margin:0; font-family:'Playfair Display',serif; font-size:40px; }
+    nav { background:#4e342e; padding:10px 40px; }
+    nav a { color:white; margin-right:20px; text-decoration:none; font-weight:bold; }
+    nav a:hover { text-decoration:underline; }
+    .container { max-width:1200px; margin:40px auto; padding:0 20px; }
+    canvas { background:white; border-radius:16px; box-shadow:0 6px 16px rgba(0,0,0,0.1); margin-bottom:40px; }
+    footer {
+      text-align: center;
+      margin: 60px 0 20px 0;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header><h1>Analytics</h1></header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="clients.html">Clients</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="tasks.html">Tasks</a>
+    <a href="documentation.html">Documentation</a>
+  </nav>
+  <div class="container">
+    <canvas id="statusChart" height="200"></canvas>
+    <canvas id="priorityChart" height="200"></canvas>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "miniCRMClients";
+    const clients = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    const statusCounts = { Lead:0, Prospect:0, Active:0, Inactive:0, Customer:0, Lost:0 };
+    const priorityCounts = { High:0, Medium:0, Low:0 };
+
+    clients.forEach(c => {
+      const s = (c.status || "").toLowerCase();
+      if (s.includes("lead")) statusCounts.Lead++;
+      else if (s.includes("prospect")) statusCounts.Prospect++;
+      else if (s.includes("active")) statusCounts.Active++;
+      else if (s.includes("inactive")) statusCounts.Inactive++;
+      else if (s.includes("customer")) statusCounts.Customer++;
+      else if (s.includes("lost")) statusCounts.Lost++;
+
+      if (c.priority) {
+        const p = c.priority.toLowerCase();
+        if (p === "high") priorityCounts.High++;
+        else if (p === "medium") priorityCounts.Medium++;
+        else if (p === "low") priorityCounts.Low++;
+      }
+    });
+
+    new Chart(document.getElementById("statusChart"), {
+      type: 'pie',
+      data: {
+        labels: Object.keys(statusCounts),
+        datasets: [{
+          data: Object.values(statusCounts),
+          backgroundColor: ["#a0522d","#cd853f","#deb887","#f4a460","#d2b48c","#8b4513"]
+        }]
+      },
+      options: { responsive:true, plugins:{ legend:{ position:'bottom' } } }
+    });
+
+    new Chart(document.getElementById("priorityChart"), {
+      type: 'bar',
+      data: {
+        labels: Object.keys(priorityCounts),
+        datasets: [{
+          label: "Priority",
+          data: Object.values(priorityCounts),
+          backgroundColor: ["#8b0000","#c04000","#deb887"]
+        }]
+      },
+      options: { responsive:true, scales: { y: { beginAtZero:true } } }
+    });
+  </script>
+
+  <footer>
+    Mini CRM Project &copy; 2025 — Portfolio Build Demo - Powered by  Chemene & AI-enhanced design strategy.
+  </footer>
+  
+
+</body>
+</html>

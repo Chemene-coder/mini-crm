@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clients - Mini CRM</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    .modal-content { max-height: 80vh; overflow-y: auto; }
+    fieldset { border: none; padding: 0; margin-bottom: 1rem; }
+    .modal-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 768px) { .modal-form-grid { grid-template-columns: 1fr; } }
+    footer {
+      text-align: center;
+      margin: 60px 0 20px 0;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- New Top Nav -->
+  <header>
+    <h1>Mini CRM</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="clients.html" class="active">Clients</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="tasks.html">Tasks</a>
+    <a href="documentation.html">Documentation</a>
+  </nav>
+
+  <!-- This section stays identical so render-clients.js still works -->
+  <div class="main" id="main">
+    <div class="content" id="content">
+      <div class="table-wrapper">
+        <table class="client-list">
+          <thead>
+            <tr>
+              <th>Name</th><th>Email</th><th>Phone</th><th>Location</th>
+              <th>Status</th><th>Priority</th><th>Last Contacted</th>
+              <th>Tags</th><th>Notes</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="clientTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal stays unchanged -->
+  <div id="editClientModal" class="modal">
+    <div class="modal-content">
+      <button class="close" id="closeModalBtn">&times;</button>
+      <h2 id="modalTitle">Edit Client</h2>
+      <form id="editClientForm">
+        <div class="modal-form-grid">
+          <fieldset><label for="edit-client-name">Name</label><input type="text" id="edit-client-name" name="edit-client-name" required /></fieldset>
+          <fieldset><label for="edit-client-email">Email</label><input type="email" id="edit-client-email" name="edit-client-email" required placeholder="Enter email address" title="Enter the client's email address" /></fieldset>
+          <fieldset><label for="edit-client-phone">Phone</label><input type="text" id="edit-client-phone" name="edit-client-phone" placeholder="Enter phone number" title="Enter the client's phone number" /></fieldset>
+          <fieldset><label for="edit-client-location">Location</label><input type="text" id="edit-client-location" name="edit-client-location" placeholder="Enter location" title="Enter the client's location" /></fieldset>
+          <fieldset><label for="edit-client-status">Status</label>
+            <select id="edit-client-status" name="edit-client-status">
+              <option>Lead</option><option>Prospect</option><option>Customer</option><option>Lost</option>
+            </select>
+          </fieldset>
+          <fieldset><label>Priority</label>
+            <select id="edit-client-priority" name="edit-client-priority" title="Select client priority">
+              <option>Low</option><option>Medium</option><option>High</option>
+            </select>
+          </fieldset>
+          <fieldset><label>Last Contacted</label><input type="date" id="edit-client-last-contacted" name="edit-client-last-contacted" placeholder="Select last contacted date" title="Select the date the client was last contacted" /></fieldset>
+          <fieldset><label>Tags (comma separated)</label><input type="text" id="edit-client-tags" name="edit-client-tags" placeholder="Enter tags, separated by commas" title="Enter tags for the client, separated by commas" /></fieldset>
+          <fieldset class="full-width-fieldset">
+            <label>Notes</label><textarea id="edit-client-notes" name="edit-client-notes" placeholder="Enter notes about the client" title="Enter notes about the client"></textarea>
+          </fieldset>
+        </div>
+        <div class="modal-form-actions">
+          <button type="submit">Save Client</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts stay exactly as before -->
+  <script type="module" src="js/render-clients.js"></script>
+  <script src="js/sidebar.js"></script>
+
+  <footer>
+    Mini CRM Project &copy; 2025 — Portfolio Build Demo - Powered by  Chemene & AI-enhanced design strategy.
+  </footer>
+</body>
+</html>

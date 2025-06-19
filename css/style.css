@@ -1,0 +1,365 @@
+/* GLOBAL RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* FONT SETUP — Wisp-style */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@500;700&display=swap');
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f3f0eb, #f9f7f3);
+  color: #2c2c2c;
+}
+
+/* MAIN PANEL */
+.main {
+  margin-left: 240px;
+  transition: margin-left 0.3s ease;
+  padding: 40px;
+  overflow-x: auto;
+}
+
+.main h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: #3c2f2f;
+  margin-bottom: 30px;
+}
+
+/* CONTENT BOX */
+.content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+/* TABLE: Grid Table 3 Accent 2 Inspired */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+table.client-list {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 15px;
+  min-width: 960px;
+}
+
+table.client-list thead {
+  background: linear-gradient(to right, #b68f61, #8b5e3c);
+}
+
+table.client-list th {
+  color: #fff;
+  font-weight: 600;
+  padding: 16px 12px;
+  border-bottom: 2px solid #dcdcdc;
+}
+
+table.client-list td {
+  background: #fff;
+  color: #333;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e2e2e2;
+  vertical-align: top;
+}
+
+/* BUTTONS */
+button {
+  font-family: 'Inter', sans-serif;
+  padding: 10px 18px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.add-client-btn {
+  background: linear-gradient(135deg, #4e342e, #8b5e3c);
+  color: white;
+}
+
+.edit-btn {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #c62828, #8e0000);
+  color: white;
+}
+
+/* MODAL (Luxury style) */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+}
+
+/* FORMS */
+form label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  color: #3c2f2f;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: rgba(248, 248, 248, 0.95);
+}
+
+form input:focus, form select:focus, form textarea:focus {
+  border-color: #8b5e3c;
+  outline: none;
+}
+
+form button[type="submit"] {
+  background: linear-gradient(135deg, #4e342e, #8b5e3c);
+  color: #fff;
+  padding: 16px 32px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+/* PAGINATION CONTROLS */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 16px;
+}
+
+.pagination-controls button {
+  background: linear-gradient(135deg, #4e342e, #8b5e3c);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+  .main {
+    padding: 20px;
+  }
+  table.client-list {
+    min-width: 960px;
+  }
+  .modal-content {
+    padding: 20px;
+  }
+}
+
+header {
+  background: #4e342e;
+  padding: 20px 40px;
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+}
+
+nav {
+  background: #4e342e;
+  padding: 10px 40px;
+}
+
+nav a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.container, .main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #faf8f3;
+  color: #3c2f2f;
+}
+
+header {
+  background: #4e342e;
+  padding: 20px 40px;
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+}
+
+nav {
+  background: #4e342e;
+  padding: 10px 40px;
+}
+
+nav a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.container, .main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #3b241e;
+  font-family: 'Playfair Display', serif;
+  color: #4e342e;
+}
+
+button {
+  padding: 8px 16px;
+  background: #3b241e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #3b241e;
+}
+
+/* Modal Styling */
+.modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Responsive Forms */
+@media (max-width: 768px) {
+  .modal-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #4e342e;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+footer {
+      text-align: center;
+      margin: 60px 0 20px 0;
+      font-size: 14px;
+      color: #aaa;
+    }
