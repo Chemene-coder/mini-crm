@@ -4,6 +4,9 @@
 > Fully dynamic CRM system with live client management, task assignment, analytics dashboard, and enterprise UI design.
 
 ---
+## 📸 Live Demo Screenshot
+
+![Mini CRM SaaS Screenshot](img/mini-crm-home.png)
 
 ## 📊 Project Overview
 
