@@ -1,5 +1,11 @@
 # 🚀 Mini CRM SaaS — Portfolio Build
 
+[![Project Type](https://img.shields.io/badge/Project-Type%3A%20SaaS%20CRM-blueviolet?style=for-the-badge)](https://github.com/Chemene-coder/mini-crm)
+[![Built With](https://img.shields.io/badge/Built%20With-Mini%20CRM%20SaaS%20Demo-brown?style=for-the-badge&logo=github)](https://github.com/Chemene-coder/mini-crm)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=for-the-badge)](https://github.com/Chemene-coder/mini-crm)
+
+
+
 > Beautifully Simple Client Management demo built with pure HTML, CSS, and JavaScript.  
 > Fully dynamic CRM system with live client management, task assignment, analytics dashboard, and enterprise UI design.
 
